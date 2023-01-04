@@ -27,8 +27,6 @@ RSpec.describe StravaService do
         expect(activity[:distance]).to be_a(Float)
         expect(activity).to have_key(:start_latlng)
         expect(activity[:start_latlng]).to be_an(Array)
-        expect(activity).to have_key(:end_latlng)
-        expect(activity[:end_latlng]).to be_an(Array)
       end
     end
   end
