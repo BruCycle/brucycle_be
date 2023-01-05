@@ -1,7 +1,7 @@
 class CreateActivities < ActiveRecord::Migration[5.2]
   def change
     create_table :activities do |t|
-      t.integer :strava_id
+      t.string :strava_id
       t.datetime :date
       t.string :title
       t.float :distance
