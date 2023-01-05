@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 2023_01_05_164321) do
   enable_extension "plpgsql"
 
   create_table "activities", force: :cascade do |t|
-    t.string "strava_id"
+    t.string "strava_uid"
     t.datetime "date"
     t.string "title"
     t.float "distance"

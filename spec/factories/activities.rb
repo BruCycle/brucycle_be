@@ -1,13 +1,14 @@
 FactoryBot.define do
   factory :activity do
-    date { "2023-01-04 15:59:28" }
-    title { "MyString" }
-    distance { 1.5 }
-    calories_burned { 1.5 }
-    gas_money_saved { 1.5 }
-    beers_banked { 1.5 }
-    latitude { 35.66 }
-    longitude { -135.66 }
-    strava_id { "133" }
+    date { Faker::Time.between(from: DateTime.now - 1, to: DateTime.now) }
+    title { Faker::TvShows::Simpsons.location }
+    distance { Faker::Number.decimal(l_digits: 2, r_digits: 2) }
+    calories_burned { Faker::Number.decimal(l_digits: 3, r_digits: 2) }
+    gas_money_saved { Faker::Number.decimal(l_digits: 1, r_digits: 2) }
+    beers_banked { Faker::Number.decimal(l_digits: 2, r_digits: 2) }
+    latitude { Faker::Number.decimal(l_digits: 2, r_digits: 2) }
+    longitude { Faker::Number.decimal(l_digits: 3, r_digits: 2) }
+    strava_uid { "#{Faker::Number.number(digits: 10)}" }
+    user
   end
 end

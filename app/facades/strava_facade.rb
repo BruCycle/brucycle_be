@@ -6,10 +6,10 @@ class StravaFacade
 
   def self.athlete_activities(token)
     json = StravaService.get_athlete_activities(token)
-  
+
     json.map do |activity|
       Activity.create(
-        strava_id: activity[:id],
+        strava_uid: activity[:athlete][:id],
         date: activity[:start_date],
         title: activity[:name],
         distance: activity[:distance],

@@ -1,6 +1,7 @@
 class Api::V1::ActivitiesController < ApplicationController
   def index
-    # new_activities = StravaFacade.athlete_activities(ENV['strava_token'])
-    render json: ActivitySerializer.new(StravaFacade.athlete_activities(ENV['strava_token']))
+    activities = Activity.where(strava_uid: params[:uid])
+    activities = StravaFacade.athlete_activities(params[:token]) if activities.empty?
+    render json: ActivitySerializer.new(activities)
   end
 end
