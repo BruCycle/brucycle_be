@@ -39,6 +39,7 @@ group :development, :test do
   gem 'faraday'
   gem 'capybara'
   gem 'figaro'
+  gem 'shoulda-matchers'
 end
 
 group :development do

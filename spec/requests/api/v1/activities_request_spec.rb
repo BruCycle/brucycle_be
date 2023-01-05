@@ -1,17 +1,14 @@
 require 'rails_helper'
 
-RSpec.describe 'Activities API' do 
+RSpec.describe 'Activities API' do
   describe '/api/v1/activities' do 
     it 'sends a list of users activities' do 
-     create_list(:activity, 5)
-     
-      get api_v1_activities_path
-       
-      activities = JSON.parse(response.body, symbolize_names: true)
+      headers = {'STRAVA_UID' => 112175675, 'STRAVA_TOKEN' => "#{ENV['strava_token']}"}
+      get '/api/v1/activities', headers: headers
 
+      activities = JSON.parse(response.body, symbolize_names: true)
       expect(response).to be_successful
       expect(activities).to be_a(Hash)
-      
       expect(activities[:data]).to be_an(Array)
       expect(activities[:data].count).to eq(2)
       activities[:data].each do |activity|
@@ -28,7 +25,6 @@ RSpec.describe 'Activities API' do
         expect(activity[:attributes]).to have_key(:beers_banked)
         expect(activity[:attributes][:beers_banked]).to be_a(Float)
       end
-
     end
- end
+  end
 end

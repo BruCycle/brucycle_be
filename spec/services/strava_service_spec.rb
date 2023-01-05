@@ -29,5 +29,15 @@ RSpec.describe StravaService do
         expect(activity[:start_latlng]).to be_an(Array)
       end
     end
+
+    describe '.get_athlete' do
+      it 'returns athletes info' do
+        athlete = StravaService.get_athlete(ENV['strava_token'])
+        expect(athlete).to be_a Hash
+
+        expect(athlete).to have_key(:username)
+        expect(athlete[:username]).to be_a(String)
+      end
+    end
   end
 end
