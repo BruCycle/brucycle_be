@@ -1,9 +1,9 @@
 FactoryBot.define do
   factory :user do
-    strava_uid { "MyString" }
-    username { "MyString" }
-    brubank { 1.5 }
-    beers_drunk { 1.5 }
-    beers_earned { 1.5 }
+    strava_uid { "#{Faker::Number.number(digits: 10)}" }
+    username { Faker::FunnyName.name }
+    brubank { Faker::Number.decimal(l_digits: 3, r_digits: 2) }
+    beers_drunk { Faker::Number.decimal(l_digits: 2, r_digits: 2) }
+    beers_earned { Faker::Number.decimal(l_digits: 2, r_digits: 2) }
   end
 end

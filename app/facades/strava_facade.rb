@@ -1,4 +1,9 @@
 class StravaFacade
+  def self.athlete(token)
+    json = StravaService.get_athlete(token)
+    User.create(strava_uid: json[:id], username: json[:username])
+  end
+
   def self.athlete_activities(token)
     json = StravaService.get_athlete_activities(token)
   
