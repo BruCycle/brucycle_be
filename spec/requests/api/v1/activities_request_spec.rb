@@ -3,8 +3,6 @@ require 'rails_helper'
 RSpec.describe 'Activities API' do 
   describe '/api/v1/activities' do 
     it 'sends a list of users activities' do 
-     create_list(:activity, 5)
-     
       get api_v1_activities_path
        
       activities = JSON.parse(response.body, symbolize_names: true)
