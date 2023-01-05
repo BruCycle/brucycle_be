@@ -15,6 +15,11 @@ RSpec.describe 'GasBuddyService' do
         expect(results).to be_an Array
         expect(results).to eq([{:Distance=>36.36, :Id=>2091, :Name=>"Santa Fe", :Price=>2.993, :State=>"NM"}])
     
+        expect(results.first).to have_key(:Id)
+        expect(results.first).to have_key(:State)
+        expect(results.first).to have_key(:Distance)  
+        expect(results.first).to have_key(:Price)
+      
       end
     end
   end
