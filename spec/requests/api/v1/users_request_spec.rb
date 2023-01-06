@@ -55,6 +55,20 @@ RSpec.describe 'Users API' do
       expect(user[:data][:attributes][:username]).to eq('Bart')
     end
 
+    xit 'deletes a beer from brubank and adds a beer to beers drunk' do
+      user = create(:user, brubank: 10, beers_drunk: 2)
+      beer_params = {drank: 'beer'}
+      headers = {'STRAVA_UID' => "#{user.strava_uid}"}
+      patch "/api/v1/user", headers: headers, params: beer_params
+
+      expect(response).to be_successful
+      expect(response.status).to eq(200)
+
+      user = JSON.parse(response.body, symbolize_names: true)
+      expect(user[:data][:attributes][:brubank]).to eq(9)
+      expect(user[:data][:attributes][:beers_drunk]).to eq(3)
+    end
+
     xit 'returns a 404 status if no query params are included' do
       headers = {'STRAVA_UID' => "#{user.strava_uid}"}
       patch '/api/v1/activities', headers: headers

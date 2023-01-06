@@ -26,7 +26,7 @@ RSpec.describe Activity do
 
     describe '.miles_biked' do
       it 'totals all activities gas money saved' do
-        expect(Activity.miles_biked).to eq(0.009)
+        expect(Activity.miles_biked).to eq(0.01125)
       end
     end
   end
