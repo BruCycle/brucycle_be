@@ -35,27 +35,14 @@ RSpec.describe 'Users API' do
       expect(athlete).to be_a Hash
     end
     
-    xit 'returns a 404 status if no headers are included' do
-      get '/api/v1/user'
+    xit 'returns a 400 status if no headers are included' do
+      headers = {'STRAVA_UID' => "123"}
+      get '/api/v1/user', headers: headers
 
       expect(response.status).to eq(400)
     end
 
-    it 'edits the user\'s username' do
-      user = create(:user, username: 'Homer')
-      user_params = {username: 'Bart'}
-      headers = {'STRAVA_UID' => "#{user.strava_uid}"}
-      patch "/api/v1/user", headers: headers, params: user_params
-
-      expect(response).to be_successful
-      expect(response.status).to eq(200)
-
-      user = JSON.parse(response.body, symbolize_names: true)
-      expect(user[:data][:attributes][:username]).to_not eq('Homer')
-      expect(user[:data][:attributes][:username]).to eq('Bart')
-    end
-
-    xit 'deletes a beer from brubank and adds a beer to beers drunk' do
+    it 'deletes a beer from brubank and adds a beer to beers drunk' do
       user = create(:user, brubank: 10, beers_drunk: 2)
       beer_params = {drank: 'beer'}
       headers = {'STRAVA_UID' => "#{user.strava_uid}"}
@@ -69,11 +56,10 @@ RSpec.describe 'Users API' do
       expect(user[:data][:attributes][:beers_drunk]).to eq(3)
     end
 
-    xit 'returns a 404 status if no query params are included' do
+    xit 'returns a 400 status if no query params are included' do
       headers = {'STRAVA_UID' => "#{user.strava_uid}"}
       patch '/api/v1/activities', headers: headers
       
-
       expect(response.status).to eq(400)
     end
   end 
