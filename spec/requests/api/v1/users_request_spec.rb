@@ -35,11 +35,12 @@ RSpec.describe 'Users API' do
       expect(athlete).to be_a Hash
     end
     
-    xit 'returns a 400 status if no headers are included' do
+    it 'returns a 400 status if no headers are included' do
       headers = {'STRAVA_UID' => "123"}
       get '/api/v1/user', headers: headers
 
       expect(response.status).to eq(400)
+      expect(response.body.include?('MISSING HEADERS')).to eq true
     end
 
     it 'deletes a beer from brubank and adds a beer to beers drunk' do
@@ -61,6 +62,7 @@ RSpec.describe 'Users API' do
       patch '/api/v1/activities', headers: headers
       
       expect(response.status).to eq(400)
+      expect(response.body.include?('MISSING PARAMS')).to eq true
     end
   end 
 end
