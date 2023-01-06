@@ -12,4 +12,12 @@ class Activity < ApplicationRecord
     def self.miles_biked
         sum(:distance) / 2000
     end
+
+    def gas_price
+        if latitude.nil? || longitude.nil?
+            3.228 
+        else
+            GasBuddyFacade.get_gas_price(latitude, longitude)
+        end
+    end
 end
