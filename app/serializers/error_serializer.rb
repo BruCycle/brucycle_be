@@ -1,17 +1,17 @@
 class ErrorSerializer
-  def self.missing_headers
+  def self.missing_params
     {
       'errors': [
         {
-          "status": 'MISSING HEADERS',
-          "message": "Please include both STRAVA_UID and STRAVA_TOKEN",
+          "status": 'MISSING PARAMS',
+          "message": "Please include correct params",
           "code": 400
         }
       ]
     }
   end
 
-  def self.missing_params
+  def self.missing_headers
 
   end
 end
