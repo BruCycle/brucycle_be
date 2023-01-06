@@ -26,7 +26,26 @@ RSpec.describe Activity do
 
     describe '.miles_biked' do
       it 'totals all activities gas money saved' do
-        expect(Activity.miles_biked).to eq(0.009)
+        expect(Activity.miles_biked).to eq(0.01125)
+      end
+    end
+  end
+
+  describe 'instance methods' do
+    before do
+      @user = create(:user)
+      @activity = create(:activity, user_id: @user.id)
+      @no_lat = create(:activity, user_id: @user.id, latitude: nil)
+      @no_lng = create(:activity, user_id: @user.id, longitude: nil)
+    end
+    describe '#gas_price' do
+      it 'returns the gas price of the activity\'s latitude and longitude' do
+        expect(@activity.gas_price).to_not eq(3.228)
+      end
+
+      it 'returns the national gas average if either latitude or longitude are empty' do
+        expect(@no_lat.gas_price).to eq(3.228)
+        expect(@no_lng.gas_price).to eq(3.228)
       end
     end
   end

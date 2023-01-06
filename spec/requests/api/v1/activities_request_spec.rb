@@ -26,5 +26,11 @@ RSpec.describe 'Activities API' do
         expect(activity[:attributes][:beers_banked]).to be_a(Float)
       end
     end
+
+    xit 'returns a 404 status if no headers are included' do
+      get '/api/v1/activities'
+
+      expect(response.status).to eq(400)
+    end
   end
 end
