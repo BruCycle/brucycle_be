@@ -10,17 +10,33 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def update
-    @user = User.update(@user.id, user_params)
+    @user.drank_beer
     render json: UserSerializer.new(@user)
   end
 
   private
 
-  def find_user
-    @user = User.find_by(strava_uid: request.headers[:STRAVA_UID])
+  def verify_headers
+    if request.headers[:STRAVA_TOKEN].nil? || request.headers[:STRAVA_UID].nil?
+      render json: ErrorSerializer.missing_headers, status: 400
+    end
   end
 
-  def user_params
-    params.permit(:username)
+  def verify_params
+    if request.headers[:STRAVA_UID].nil?
+      render json: ErrorSerializer.missing_headers, status: 400
+    elsif params[:drank].nil?
+      render json: ErrorSerializer.missing_params, status: 400
+    end
+  end
+
+  def verify_type
+    verify_params if params[:action] == 'update'
+    verify_headers if params[:action] == 'show'
+  end
+
+  def find_user
+    verify_type
+    @user = User.find_by(strava_uid: request.headers[:STRAVA_UID])
   end
 end
