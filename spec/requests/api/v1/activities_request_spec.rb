@@ -4,7 +4,7 @@ RSpec.describe 'Activities API' do
   describe '/api/v1/activities' do 
     xit 'sends a list of users activities' do
       StravaFacade.athlete(ENV['strava_token']) 
-      headers = {'STRAVA_UID' => 112175675, 'STRAVA_TOKEN' => "#{ENV['strava_token']}"}
+      headers = {'STRAVA_UID' => 8040180, 'STRAVA_TOKEN' => "#{ENV['strava_token']}"}
       get '/api/v1/activities', headers: headers
       
       activities = JSON.parse(response.body, symbolize_names: true)
@@ -37,12 +37,12 @@ RSpec.describe 'Activities API' do
 
     it 'updates the db users activities if there are new Strava activities' do
       StravaFacade.athlete(ENV['strava_token'])
-      headers = {'STRAVA_UID' => 112175675, 'STRAVA_TOKEN' => "#{ENV['strava_token']}"}
+      headers = {'STRAVA_UID' => 8040180, 'STRAVA_TOKEN' => "#{ENV['strava_token']}"}
       get '/api/v1/activities', headers: headers
       get '/api/v1/activities', headers: headers
       activities = JSON.parse(response.body, symbolize_names: true)
       
-      expect(activities[:data].count).to eq(2)
+      expect(activities[:data].count).to eq(30)
     end
   end
 end

@@ -3,7 +3,7 @@ class Api::V1::UsersController < ApplicationController
 
   def show
     if @user.nil?
-      StravaFacade.athlete(request.headers[:STRAVA_UID]) 
+      StravaFacade.athlete(request.headers[:STRAVA_TOKEN]) 
       find_user
     end
     render json: UserSerializer.new(@user)
