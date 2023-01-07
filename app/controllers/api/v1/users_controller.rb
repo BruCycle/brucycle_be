@@ -15,7 +15,6 @@ class Api::V1::UsersController < ApplicationController
   end
 
   private
-
   def verify_headers
     if request.headers[:STRAVA_TOKEN].nil? || request.headers[:STRAVA_UID].nil?
       render json: ErrorSerializer.missing_headers, status: 400
