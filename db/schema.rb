@@ -10,13 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_01_04_225928) do
+ActiveRecord::Schema.define(version: 2023_01_05_164321) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "activities", force: :cascade do |t|
-    t.integer "strava_id"
+    t.string "strava_uid"
     t.datetime "date"
     t.string "title"
     t.float "distance"
@@ -27,6 +27,19 @@ ActiveRecord::Schema.define(version: 2023_01_04_225928) do
     t.string "longitude"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_activities_on_user_id"
   end
 
+  create_table "users", force: :cascade do |t|
+    t.string "strava_uid"
+    t.string "username"
+    t.float "brubank"
+    t.float "beers_drunk"
+    t.float "beers_earned"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_foreign_key "activities", "users"
 end

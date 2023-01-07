@@ -1,0 +1,16 @@
+class UserSerializer
+  include JSONAPI::Serializer
+  attributes :username, :brubank, :beers_drunk
+
+  attribute :tot_gas_money_saved do |obj|
+    obj.activities.gas_money_saved
+  end
+
+  attribute :tot_calories_burned do |obj|
+    obj.activities.calories_burned
+  end
+
+  attribute :tot_miles_biked do |obj|
+    obj.activities.miles_biked
+  end
+end

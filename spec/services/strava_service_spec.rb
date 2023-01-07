@@ -4,7 +4,7 @@ RSpec.describe StravaService do
   describe 'class methods' do
     describe '.conn' do
       it 'connects with the Strava API' do
-        connection = StravaService.conn('2be81132c00f4b35dc738cf69969065745987e9e')
+        connection = StravaService.conn(ENV['strava_token'])
         expect(connection.params).to be_a Hash
         expect(connection.headers).to be_a Hash
         expect(connection.headers).to have_key "Authorization"
@@ -13,7 +13,7 @@ RSpec.describe StravaService do
 
     describe '.get_athlete_activities' do
       it 'returns athletes activities' do
-        activities = StravaService.get_athlete_activities('2be81132c00f4b35dc738cf69969065745987e9e')
+        activities = StravaService.get_athlete_activities(ENV['strava_token'])
         expect(activities).to be_an Array
 
         activity = activities[0]
@@ -27,6 +27,16 @@ RSpec.describe StravaService do
         expect(activity[:distance]).to be_a(Float)
         expect(activity).to have_key(:start_latlng)
         expect(activity[:start_latlng]).to be_an(Array)
+      end
+    end
+
+    describe '.get_athlete' do
+      it 'returns athletes info' do
+        athlete = StravaService.get_athlete(ENV['strava_token'])
+        expect(athlete).to be_a Hash
+
+        expect(athlete).to have_key(:username)
+        expect(athlete[:username]).to be_a(String)
       end
     end
   end
