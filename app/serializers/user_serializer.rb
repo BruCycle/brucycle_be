@@ -1,6 +1,6 @@
 class UserSerializer
   include JSONAPI::Serializer
-  attributes :username, :brubank, :beers_drunk
+  attributes :brubank, :beers_drunk
 
   attribute :tot_gas_money_saved do |obj|
     obj.activities.gas_money_saved

@@ -13,8 +13,6 @@ RSpec.describe 'Users API' do
 
       attrs = athlete[:data][:attributes]
       expect(attrs).to be_a Hash
-      expect(attrs).to have_key(:username)
-      expect(attrs[:username]).to be_a(String)
       expect(attrs).to have_key(:brubank)
       expect(attrs[:brubank]).to be_a(Float)
       expect(attrs).to have_key(:tot_gas_money_saved)

@@ -18,7 +18,7 @@ RSpec.describe StravaFacade do
       it 'returns an athletes info' do
         athlete = StravaFacade.athlete(ENV['strava_token'])
 
-        expect(athlete.username).to eq('sean_culliton')
+        expect(athlete.strava_uid).to eq('112175675')
       end
     end
   end
