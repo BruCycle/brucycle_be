@@ -7,6 +7,7 @@ class Api::V1::ActivitiesController < ApplicationController
 
   private
 
+  
   def find_activities
     @activities = Activity.where(strava_uid: request.headers[:STRAVA_UID])
     @activities = StravaFacade.athlete_activities(request.headers[:STRAVA_TOKEN]) if @activities.empty?
