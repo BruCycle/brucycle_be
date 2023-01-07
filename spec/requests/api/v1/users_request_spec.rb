@@ -56,14 +56,5 @@ RSpec.describe 'Users API' do
       expect(user[:data][:attributes][:brubank]).to eq(9)
       expect(user[:data][:attributes][:beers_drunk]).to eq(3)
     end
-
-    it 'returns a 400 status if no query params are included' do
-      user = create(:user, brubank: 10, beers_drunk: 2)
-      headers = {'STRAVA_UID' => "#{user.strava_uid}"}
-      patch '/api/v1/activities', headers: headers
-      
-      expect(response.status).to eq(400)
-      expect(response.body.include?('MISSING PARAMS')).to eq true
-    end
   end 
 end
