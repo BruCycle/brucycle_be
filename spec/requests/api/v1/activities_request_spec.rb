@@ -2,7 +2,8 @@ require 'rails_helper'
 
 RSpec.describe 'Activities API' do
   describe '/api/v1/activities' do 
-    it 'sends a list of users activities' do 
+    it 'sends a list of users activities' do
+      StravaFacade.athlete(ENV['strava_token']) 
       headers = {'STRAVA_UID' => 112175675, 'STRAVA_TOKEN' => "#{ENV['strava_token']}"}
       get '/api/v1/activities', headers: headers
       
@@ -32,6 +33,16 @@ RSpec.describe 'Activities API' do
       get '/api/v1/activities'
       
       expect(response.status).to eq(400)
+    end
+
+    it 'updates the db users activities if there are new Strava activities' do
+      StravaFacade.athlete(ENV['strava_token'])
+      headers = {'STRAVA_UID' => 112175675, 'STRAVA_TOKEN' => "#{ENV['strava_token']}"}
+      get '/api/v1/activities', headers: headers
+      get '/api/v1/activities', headers: headers
+      activities = JSON.parse(response.body, symbolize_names: true)
+      
+      expect(activities[:data].count).to eq(2)
     end
   end
 end
