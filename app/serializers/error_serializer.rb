@@ -16,7 +16,7 @@ class ErrorSerializer
         'errors': [
           {
             "status": 'MISSING HEADERS',
-            "message": "Please include correct params",
+            "message": "Please include correct headers",
             "code": 400
           }
         ]

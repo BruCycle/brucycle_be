@@ -7,7 +7,7 @@ RSpec.describe 'Activities API' do
       get '/api/v1/activities', headers: headers
       
       activities = JSON.parse(response.body, symbolize_names: true)
-    
+  
       expect(response).to be_successful
       expect(activities).to be_a(Hash)
       expect(activities[:data]).to be_an(Array)
@@ -28,8 +28,9 @@ RSpec.describe 'Activities API' do
       end
     end
 
-    xit 'returns a 400 status if no headers are included' do   
+    it 'returns a 400 status if no headers are included' do   
       get '/api/v1/activities'
+      
       expect(response.status).to eq(400)
     end
   end
