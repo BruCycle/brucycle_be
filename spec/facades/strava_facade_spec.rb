@@ -4,6 +4,7 @@ RSpec.describe StravaFacade do
   describe 'class methods' do
     describe '.athlete_activities' do
       it 'returns athlete activities' do
+        StravaFacade.athlete(ENV['strava_token'])
         activities = StravaFacade.athlete_activities(ENV['strava_token'])
     
         expect(activities).to be_an Array
