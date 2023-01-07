@@ -6,8 +6,9 @@ RSpec.describe 'Activities API' do
       StravaFacade.athlete(ENV['strava_token']) 
       headers = {'STRAVA_UID' => 112175675, 'STRAVA_TOKEN' => "#{ENV['strava_token']}"}
       get '/api/v1/activities', headers: headers
-
+      
       activities = JSON.parse(response.body, symbolize_names: true)
+  
       expect(response).to be_successful
       expect(activities).to be_a(Hash)
       expect(activities[:data]).to be_an(Array)
@@ -28,22 +29,10 @@ RSpec.describe 'Activities API' do
       end
     end
 
-    xit 'returns a 400 status if no headers are included' do
+    it 'returns a 400 status if no headers are included' do   
       get '/api/v1/activities'
-
-      expect(response.status).to eq(400)
-    end
-
-    xit 'updates the db users activities if there are new Strava activities' do
-      user = create(:user, strava_uid: '112175675')
-      create_list(:activity, 3, strava_uid: '112175675', user_id: user.id)
-      headers = {'STRAVA_UID' => 112175675, 'STRAVA_TOKEN' => "#{ENV['strava_token']}"}
-      get '/api/v1/activities', headers: headers
-
-      activities = JSON.parse(response.body, symbolize_names: true)
       
-      expect(response).to be_successful
-      expect(activities.count).to eq(5)
+      expect(response.status).to eq(400)
     end
 
     it 'updates the db users activities if there are new Strava activities' do
