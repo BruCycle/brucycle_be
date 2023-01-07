@@ -10,7 +10,7 @@ RSpec.describe StravaFacade do
         expect(activities).to be_an Array
         
         activity = activities[0]
-        expect(activity.distance).to eq(37.0)
+        expect(activity.distance).to eq(19626.7)
       end
     end
 
@@ -18,7 +18,7 @@ RSpec.describe StravaFacade do
       it 'returns an athletes info' do
         athlete = StravaFacade.athlete(ENV['strava_token'])
 
-        expect(athlete.strava_uid).to eq('112175675')
+        expect(athlete.strava_uid).to eq('8040180')
       end
     end
   end
