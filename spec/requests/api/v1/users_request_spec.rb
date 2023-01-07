@@ -35,7 +35,7 @@ RSpec.describe 'Users API' do
       expect(athlete).to be_a Hash
     end
     
-    xit 'returns a 400 status if no headers are included' do
+    it 'returns a 400 status if only one header is included' do
       headers = {'STRAVA_UID' => "123"}
       get '/api/v1/user', headers: headers
 
@@ -55,14 +55,6 @@ RSpec.describe 'Users API' do
       user = JSON.parse(response.body, symbolize_names: true)
       expect(user[:data][:attributes][:brubank]).to eq(9)
       expect(user[:data][:attributes][:beers_drunk]).to eq(3)
-    end
-
-    xit 'returns a 400 status if no query params are included' do
-      headers = {'STRAVA_UID' => "#{user.strava_uid}"}
-      patch '/api/v1/activities', headers: headers
-      
-      expect(response.status).to eq(400)
-      expect(response.body.include?('MISSING PARAMS')).to eq true
     end
   end 
 end

@@ -12,6 +12,14 @@ class ErrorSerializer
   end
 
   def self.missing_headers
-
+      {
+        'errors': [
+          {
+            "status": 'MISSING HEADERS',
+            "message": "Please include correct headers",
+            "code": 400
+          }
+        ]
+      }
   end
-end
+end 
