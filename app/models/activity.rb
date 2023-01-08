@@ -1,6 +1,6 @@
 class Activity < ApplicationRecord
 	belongs_to :user
-	after_create :calc_calories_burned, :calc_gas_money_saved, :calc_beers_banked
+	after_create :calc_calories_burned, :calc_gas_money_saved, :calc_beers_banked, :add_to_my_brubank
 
 	def self.gas_money_saved
 		sum(:gas_money_saved).round(4)
@@ -22,15 +22,19 @@ class Activity < ApplicationRecord
 		end
 	end
 
+	def add_to_my_brubank
+		user.brubank += beers_banked
+	end
+
 	def calc_calories_burned
 		update_attribute(:calories_burned, ((distance/1600) * 50).round(3))
 	end
 
 	def calc_gas_money_saved
-		update_attribute(:gas_money_saved, ((distance/1600) / 25 * 3.228).round(4))
+		update_attribute(:gas_money_saved, ((distance/1600) / 25 * gas_price).round(4))
 	end
 
 	def calc_beers_banked 
-		update_attribute(:beers_banked, ((distance/1600) / 25 * 3.228 / 4.25).round(4))
+		update_attribute(:beers_banked, ((distance/1600) / 25 * gas_price / 4.25).round(4))
 	end
 end

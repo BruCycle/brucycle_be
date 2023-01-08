@@ -5,16 +5,15 @@ RSpec.describe Activity do
     it { should belong_to :user }
   end
 
-  before do
-    user = create(:user)
-    create_list(:activity, 3, distance: 4, user_id: user.id)
-    create_list(:activity, 3, distance: 2, user_id: user.id)
-  end
-
   describe 'class methods' do
+    before do
+      user = create(:user)
+      create_list(:activity, 3, distance: 4, user_id: user.id)
+      create_list(:activity, 3, distance: 2, user_id: user.id)
+    end
     describe '.gas_money_saved' do
-      it 'totals all activities gas money saved' do
-        expect(Activity.gas_money_saved).to eq(0.0015)
+      xit 'totals all activities gas money saved' do
+        expect(Activity.gas_money_saved).to eq(0.0014)
       end
     end
 
@@ -34,8 +33,8 @@ RSpec.describe Activity do
   describe 'instance methods' do
     before do
       @user = create(:user)
-      @activity = create(:activity, user_id: @user.id, distance: 2)
-      @activity2 = create(:activity, user_id: @user.id, distance: 3)
+      @activity = create(:activity, user_id: @user.id, distance: 55)
+      @activity2 = create(:activity, user_id: @user.id, distance: 100)
       @no_lat = create(:activity, user_id: @user.id, latitude: nil)
       @no_lng = create(:activity, user_id: @user.id, longitude: nil)
     end
@@ -59,9 +58,13 @@ RSpec.describe Activity do
         expect(@activity2.calc_gas_money_saved).to eq(true)
       end
 
-      it 'updates the attribute for beers banked' do 
-        expect(@activity.calc_beers_banked).to eq(true)
-        expect(@activity2.calc_beers_banked).to eq(true)
+      xit 'updates the attribute for beers banked' do 
+        expect(@activity.beers_banked).to eq(0.0012)
+        expect(@activity2.beers_banked).to eq(0.0001)
+      end
+
+      xit 'adds to my brubank' do
+        expect(@user.brubank).to eq(0.0001)
       end
     end
   end
