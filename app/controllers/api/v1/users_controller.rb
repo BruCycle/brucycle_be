@@ -3,7 +3,7 @@ class Api::V1::UsersController < ApplicationController
 
   def show
     if @user.nil?
-      StravaFacade.athlete(request.headers[:STRAVA_UID]) 
+      StravaFacade.athlete(request.headers[:HTTP_STRAVA_TOKEN]) 
       find_user
     end
     render json: UserSerializer.new(@user)
@@ -16,13 +16,13 @@ class Api::V1::UsersController < ApplicationController
 
   private
   def verify_headers
-    if request.headers[:STRAVA_TOKEN].nil? || request.headers[:STRAVA_UID].nil?
+    if request.headers[:HTTP_STRAVA_TOKEN].nil? || request.headers[:HTTP_STRAVA_UID].nil?
       render json: ErrorSerializer.missing_headers, status: 400
     end
   end
 
   def verify_params
-    if request.headers[:STRAVA_UID].nil?
+    if request.headers[:HTTP_STRAVA_UID].nil?
       render json: ErrorSerializer.missing_headers, status: 400
     elsif params[:drank].nil?
       render json: ErrorSerializer.missing_params, status: 400
@@ -36,6 +36,6 @@ class Api::V1::UsersController < ApplicationController
 
   def find_user
     verify_type
-    @user = User.find_by(strava_uid: request.headers[:STRAVA_UID])
+    @user = User.find_by(strava_uid: request.headers[:HTTP_STRAVA_UID])
   end
 end
