@@ -41,7 +41,6 @@ RSpec.describe 'Activities API' do
       get '/api/v1/activities', headers: headers
       get '/api/v1/activities', headers: headers
       activities = JSON.parse(response.body, symbolize_names: true)
-      binding.pry
       expect(activities[:data].count).to eq(10)
     end
   end

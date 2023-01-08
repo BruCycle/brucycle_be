@@ -3,8 +3,8 @@ class CreateUsers < ActiveRecord::Migration[5.2]
     create_table :users do |t|
       t.string :strava_uid
       t.float :brubank, default: 0
-      t.float :beers_drunk
-      t.float :beers_earned
+      t.float :beers_drunk, default: 0
+      t.float :beers_earned, default: 0
 
       t.timestamps
     end
