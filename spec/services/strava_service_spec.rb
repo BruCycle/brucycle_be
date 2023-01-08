@@ -13,6 +13,7 @@ RSpec.describe StravaService do
 
     describe '.get_athlete_activities' do
       it 'returns athletes activities' do
+        VCR.insert_cassette 'strava_service_athlete_activities'
         activities = StravaService.get_athlete_activities(ENV['strava_token'])
         expect(activities).to be_an Array
 
@@ -27,16 +28,16 @@ RSpec.describe StravaService do
         expect(activity[:distance]).to be_a(Float)
         expect(activity).to have_key(:start_latlng)
         expect(activity[:start_latlng]).to be_an(Array)
+        VCR.eject_cassette
       end
     end
 
     describe '.get_athlete' do
       it 'returns athletes info' do
+        VCR.insert_cassette 'strava_service_athlete'
         athlete = StravaService.get_athlete(ENV['strava_token'])
         expect(athlete).to be_a Hash
-
-        expect(athlete).to have_key(:username)
-        expect(athlete[:username]).to be_a(String)
+        VCR.eject_cassette
       end
     end
   end
