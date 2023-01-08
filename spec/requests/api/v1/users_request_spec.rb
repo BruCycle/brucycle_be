@@ -24,6 +24,7 @@ RSpec.describe 'Users API' do
     end
 
     it 'returns the user and following info even if user is not saved in db yet' do
+      VCR.insert_cassette 'strava_facade_athlete'
       headers = {'STRAVA_UID' => "123", 'STRAVA_TOKEN' => "#{ENV['strava_token']}"}
       get '/api/v1/user', headers: headers
 
@@ -31,6 +32,7 @@ RSpec.describe 'Users API' do
 
       expect(response).to be_successful
       expect(athlete).to be_a Hash
+      VCR.eject_cassette
     end
     
     it 'returns a 400 status if only one header is included' do

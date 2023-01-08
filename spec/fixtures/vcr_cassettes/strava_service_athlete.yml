@@ -1,0 +1,73 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://www.strava.com/api/v3/athlete
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Authorization:
+      - Bearer <api_key>
+      User-Agent:
+      - Faraday v2.7.2
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Date:
+      - Sun, 08 Jan 2023 22:48:07 GMT
+      Via:
+      - 1.1 linkerd, 1.1 linkerd, 1.1 befcfd7ee847a3c890471f27612dbcde.cloudfront.net
+        (CloudFront)
+      Etag:
+      - W/"6414f49b96dc8d99af334cfc608cd119"
+      Vary:
+      - Origin
+      Server:
+      - nginx/1.21.3
+      Status:
+      - 200 OK
+      X-Request-Id:
+      - f7d8ed11-e492-463e-8da7-779a00de4dd5
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      X-Frame-Options:
+      - DENY
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Ratelimit-Limit:
+      - '100,1000'
+      X-Ratelimit-Usage:
+      - '2,412'
+      X-Download-Options:
+      - noopen
+      X-Content-Type-Options:
+      - nosniff
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      X-Cache:
+      - Miss from cloudfront
+      X-Amz-Cf-Pop:
+      - DEN52-P2
+      X-Amz-Cf-Id:
+      - zPemWO58pSCeaKrcifl1zNrHKxKyFulbPfKtX9pALW0lR7kU3di-TQ==
+    body:
+      encoding: ASCII-8BIT
+      string: '{"id":8040180,"username":null,"resource_state":2,"firstname":"Ashley","lastname":"Turner","bio":"","city":"Denver","state":"Colorado","country":"United
+        States","sex":"F","premium":false,"summit":false,"created_at":"2015-02-25T00:23:28Z","updated_at":"2023-01-07T21:39:28Z","badge_type_id":0,"weight":86.1825,"profile_medium":"https://dgalywyr863hv.cloudfront.net/pictures/athletes/8040180/26271026/1/medium.jpg","profile":"https://dgalywyr863hv.cloudfront.net/pictures/athletes/8040180/26271026/1/large.jpg","friend":null,"follower":null}'
+  recorded_at: Sun, 08 Jan 2023 22:48:07 GMT
+recorded_with: VCR 6.1.0

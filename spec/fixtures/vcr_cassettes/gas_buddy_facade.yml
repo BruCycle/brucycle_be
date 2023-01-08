@@ -1,0 +1,55 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://www.gasbuddy.com/gaspricemap/county?lat=33&lng=-110&usa=true
+    body:
+      encoding: UTF-8
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.7.2
+      Content-Length:
+      - '0'
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Sun, 08 Jan 2023 22:37:26 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '186'
+      Connection:
+      - keep-alive
+      Cf-Ray:
+      - 78686aee2ff01f38-DEN
+      Cache-Control:
+      - private
+      Set-Cookie:
+      - ASP.NET_SessionId=4u3ibkjrorqghhfxuqexwvht; path=/; HttpOnly; SameSite=Lax
+      - datadome=40fPqER2bIjuuxyEku2wQPt_R8Uhe02YhlXjgb5mCiJot8-AozW1E2SNJdS84tJfP_N~4ctHiXwIsPinl1j4lX59dVdW8i314uQBJywcFURM31ekNwDC6EQxNxQmUGx5;
+        Max-Age=31536000; Domain=.gasbuddy.com; Path=/; Secure; SameSite=Lax
+      Vary:
+      - Accept-Encoding
+      Cf-Cache-Status:
+      - DYNAMIC
+      Accept-Ch:
+      - Sec-CH-UA,Sec-CH-UA-Mobile,Sec-CH-UA-Platform,Sec-CH-UA-Arch,Sec-CH-UA-Full-Version-List,Sec-CH-UA-Model,Sec-CH-Device-Memory
+      X-Aspnetmvc-Version:
+      - '5.2'
+      X-Datadome:
+      - protected
+      Server:
+      - cloudflare
+    body:
+      encoding: ASCII-8BIT
+      string: '[{"Id":2501,"Name":"Graham","State":"AZ","Price":3.575,"Distance":22.19}]'
+  recorded_at: Sun, 08 Jan 2023 22:37:26 GMT
+recorded_with: VCR 6.1.0

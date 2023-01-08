@@ -33,14 +33,16 @@ RSpec.describe Activity do
   describe 'instance methods' do
     before do
       @user = create(:user)
-      @activity = create(:activity, user_id: @user.id, distance: 55)
+      @activity = create(:activity, user_id: @user.id, latitude: 39, longitude: -122, distance: 55)
       @activity2 = create(:activity, user_id: @user.id, distance: 100)
       @no_lat = create(:activity, user_id: @user.id, latitude: nil)
       @no_lng = create(:activity, user_id: @user.id, longitude: nil)
     end
     describe '#gas_price' do
       it 'returns the gas price of the activity\'s latitude and longitude' do
+        VCR.insert_cassette 'gas_buddy_call'
         expect(@activity.gas_price).to_not eq(3.228)
+        VCR.eject_cassette
       end
 
       it 'returns the national gas average if either latitude or longitude are empty' do
