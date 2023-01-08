@@ -40,6 +40,8 @@ group :development, :test do
   gem 'capybara'
   gem 'figaro'
   gem 'shoulda-matchers'
+  gem 'webmock'
+  gem 'vcr'
 end
 
 group :development do

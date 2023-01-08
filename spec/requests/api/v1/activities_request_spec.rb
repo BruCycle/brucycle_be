@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe 'Activities API' do
   describe '/api/v1/activities' do 
     it 'sends a list of users activities' do
+      VCR.insert_cassette 'strava_facade_athlete_activities'
       StravaFacade.athlete(ENV['strava_token']) 
       headers = {'STRAVA_UID' => 8040180, 'STRAVA_TOKEN' => "#{ENV['strava_token']}"}
       get '/api/v1/activities', headers: headers
@@ -27,6 +28,7 @@ RSpec.describe 'Activities API' do
         expect(activity[:attributes]).to have_key(:beers_banked)
         expect(activity[:attributes][:beers_banked]).to be_a(Float)
       end
+      VCR.eject_cassette
     end
 
     it 'returns a 400 status if no headers are included' do   
@@ -36,12 +38,17 @@ RSpec.describe 'Activities API' do
     end
 
     it 'updates the db users activities if there are new Strava activities' do
+      VCR.insert_cassette 'strava_facade_athlete_activities'
       StravaFacade.athlete(ENV['strava_token'])
       headers = {'STRAVA_UID' => 8040180, 'STRAVA_TOKEN' => "#{ENV['strava_token']}"}
       get '/api/v1/activities', headers: headers
+      VCR.eject_cassette
+
+      VCR.insert_cassette 'strava_facade_athlete_activities'
       get '/api/v1/activities', headers: headers
       activities = JSON.parse(response.body, symbolize_names: true)
       expect(activities[:data].count).to eq(10)
+      VCR.eject_cassette
     end
   end
 end
