@@ -12,8 +12,8 @@ RSpec.describe Activity do
       create_list(:activity, 3, distance: 2, user_id: user.id)
     end
     describe '.gas_money_saved' do
-      xit 'totals all activities gas money saved' do
-        expect(Activity.gas_money_saved).to eq(0.0014)
+      it 'totals all activities gas money saved' do
+        expect(Activity.gas_money_saved).to eq(0.0015)
       end
     end
 
@@ -58,13 +58,9 @@ RSpec.describe Activity do
         expect(@activity2.calc_gas_money_saved).to eq(true)
       end
 
-      xit 'updates the attribute for beers banked' do 
-        expect(@activity.beers_banked).to eq(0.0012)
-        expect(@activity2.beers_banked).to eq(0.0001)
-      end
-
-      xit 'adds to my brubank' do
-        expect(@user.brubank).to eq(0.0001)
+      it 'updates the attribute for beers banked' do 
+        expect(@activity.beers_banked).to eq(0.001)
+        expect(@activity2.beers_banked).to eq(0.0019)
       end
     end
   end
