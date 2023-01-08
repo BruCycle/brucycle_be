@@ -12,7 +12,7 @@ RSpec.describe 'Activities API' do
       expect(response).to be_successful
       expect(activities).to be_a(Hash)
       expect(activities[:data]).to be_an(Array)
-      expect(activities[:data].count).to eq(30)
+      expect(activities[:data].count).to eq(10)
       activities[:data].each do |activity|
         expect(activity[:attributes]).to have_key(:date)
         expect(activity[:attributes][:date]).to be_a(String)
@@ -41,8 +41,7 @@ RSpec.describe 'Activities API' do
       get '/api/v1/activities', headers: headers
       get '/api/v1/activities', headers: headers
       activities = JSON.parse(response.body, symbolize_names: true)
-      
-      expect(activities[:data].count).to eq(30)
+      expect(activities[:data].count).to eq(10)
     end
   end
 end

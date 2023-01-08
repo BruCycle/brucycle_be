@@ -7,7 +7,7 @@ class StravaFacade
   def self.athlete_activities(token)
     json = StravaService.get_athlete_activities(token)
     json.map do |activity|
-      if Activity.find_by(strava_id: activity[:id]).nil?
+      if Activity.find_by(strava_id: activity[:id]).nil? && activity[:type] == 'Ride'
         Activity.create(
           strava_uid: activity[:athlete][:id],
           strava_id: activity[:id],

@@ -1,6 +1,6 @@
 class Activity < ApplicationRecord
 	belongs_to :user
-	after_create :calc_calories_burned, :calc_gas_money_saved, :calc_beers_banked
+	after_create :calc_calories_burned, :calc_gas_money_saved, :calc_beers_banked, :add_to_my_brubank
 
 	def self.gas_money_saved
 		sum(:gas_money_saved).round(4)
@@ -20,6 +20,11 @@ class Activity < ApplicationRecord
 		else
 			GasBuddyFacade.get_gas_price(latitude, longitude)
 		end
+	end
+
+	def add_to_my_brubank
+		new_amount = beers_banked + user.brubank
+		user.update_attribute(:brubank, new_amount)
 	end
 
 	def calc_calories_burned

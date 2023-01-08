@@ -34,9 +34,9 @@ ActiveRecord::Schema.define(version: 2023_01_05_164321) do
 
   create_table "users", force: :cascade do |t|
     t.string "strava_uid"
-    t.float "brubank"
-    t.float "beers_drunk"
-    t.float "beers_earned"
+    t.float "brubank", default: 0.0
+    t.float "beers_drunk", default: 0.0
+    t.float "beers_earned", default: 0.0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
