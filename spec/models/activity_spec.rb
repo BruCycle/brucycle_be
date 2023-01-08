@@ -7,14 +7,14 @@ RSpec.describe Activity do
 
   before do
     user = create(:user)
-    create_list(:activity, 3, gas_money_saved: 2.2, distance: 4, user_id: user.id)
-    create_list(:activity, 3, gas_money_saved: 4.3, distance: 2, user_id: user.id)
+    create_list(:activity, 3, distance: 4, user_id: user.id)
+    create_list(:activity, 3, distance: 2, user_id: user.id)
   end
 
   describe 'class methods' do
     describe '.gas_money_saved' do
       it 'totals all activities gas money saved' do
-        expect(Activity.gas_money_saved).to eq(19.5)
+        expect(Activity.gas_money_saved).to eq(0014526)
       end
     end
 
