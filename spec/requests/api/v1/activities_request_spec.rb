@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'Activities API' do
   describe '/api/v1/activities' do 
-    xit 'sends a list of users activities' do
+    it 'sends a list of users activities' do
       StravaFacade.athlete(ENV['strava_token']) 
       headers = {'STRAVA_UID' => 8040180, 'STRAVA_TOKEN' => "#{ENV['strava_token']}"}
       get '/api/v1/activities', headers: headers
@@ -12,7 +12,7 @@ RSpec.describe 'Activities API' do
       expect(response).to be_successful
       expect(activities).to be_a(Hash)
       expect(activities[:data]).to be_an(Array)
-      expect(activities[:data].count).to eq(2)
+      expect(activities[:data].count).to eq(30)
       activities[:data].each do |activity|
         expect(activity[:attributes]).to have_key(:date)
         expect(activity[:attributes][:date]).to be_a(String)
