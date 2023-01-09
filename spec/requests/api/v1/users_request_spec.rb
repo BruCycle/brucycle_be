@@ -3,7 +3,7 @@ RSpec.describe 'Users API' do
     it 'returns the user and following info' do
       user = create(:user)
       create_list(:activity, 5, user_id: user.id)
-      headers = {'STRAVA_UID' => "#{user.strava_uid}", 'STRAVA_TOKEN' => "#{ENV['strava_token']}"}
+      headers = {'HTTP_STRAVA_UID' => "#{user.strava_uid}", 'HTTP_STRAVA_TOKEN' => "#{ENV['strava_token']}"}
       get '/api/v1/user', headers: headers
 
       athlete = JSON.parse(response.body, symbolize_names: true)
@@ -25,18 +25,17 @@ RSpec.describe 'Users API' do
 
     it 'returns the user and following info even if user is not saved in db yet' do
       VCR.insert_cassette 'strava_facade_athlete'
-      headers = {'STRAVA_UID' => "123", 'STRAVA_TOKEN' => "#{ENV['strava_token']}"}
+      headers = {'HTTP_STRAVA_UID' => "123", 'HTTP_STRAVA_TOKEN' => "#{ENV['strava_token']}"}
       get '/api/v1/user', headers: headers
 
       athlete = JSON.parse(response.body, symbolize_names: true)
-
       expect(response).to be_successful
       expect(athlete).to be_a Hash
       VCR.eject_cassette
     end
     
     it 'returns a 400 status if only one header is included' do
-      headers = {'STRAVA_UID' => "123"}
+      headers = {'HTTP_STRAVA_UID' => "123"}
       get '/api/v1/user', headers: headers
 
       expect(response.status).to eq(400)
@@ -46,7 +45,7 @@ RSpec.describe 'Users API' do
     it 'deletes a beer from brubank and adds a beer to beers drunk' do
       user = create(:user, brubank: 10, beers_drunk: 2)
       beer_params = {drank: 'beer'}
-      headers = {'STRAVA_UID' => "#{user.strava_uid}"}
+      headers = {'HTTP_STRAVA_UID' => "#{user.strava_uid}"}
       patch "/api/v1/user", headers: headers, params: beer_params
 
       expect(response).to be_successful
@@ -58,7 +57,7 @@ RSpec.describe 'Users API' do
     end
 
     it 'returns a 400 status if params are missing' do
-      headers = {'STRAVA_UID' => "123"}
+      headers = {'HTTP_STRAVA_UID' => "123"}
       patch '/api/v1/user', headers: headers
 
       expect(response.status).to eq(400)

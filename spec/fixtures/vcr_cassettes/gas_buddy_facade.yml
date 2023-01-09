@@ -21,7 +21,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Sun, 08 Jan 2023 22:37:26 GMT
+      - Mon, 09 Jan 2023 17:41:43 GMT
       Content-Type:
       - application/json; charset=utf-8
       Content-Length:
@@ -29,12 +29,12 @@ http_interactions:
       Connection:
       - keep-alive
       Cf-Ray:
-      - 78686aee2ff01f38-DEN
+      - 786ef7202b752912-DEN
       Cache-Control:
       - private
       Set-Cookie:
-      - ASP.NET_SessionId=4u3ibkjrorqghhfxuqexwvht; path=/; HttpOnly; SameSite=Lax
-      - datadome=40fPqER2bIjuuxyEku2wQPt_R8Uhe02YhlXjgb5mCiJot8-AozW1E2SNJdS84tJfP_N~4ctHiXwIsPinl1j4lX59dVdW8i314uQBJywcFURM31ekNwDC6EQxNxQmUGx5;
+      - ASP.NET_SessionId=ozlaslrcdy445t5fg52zfbby; path=/; HttpOnly; SameSite=Lax
+      - datadome=78QbR0MD6~WLFniVB_0vRY4OCYmVSr_R772GyxShmHnd5SOMLqkLUc2CSfQ_nv--31CRgblLbKNJITI3JDTUB6Wyojyr3tSKMsHN-~IJtqJg-3q6eoAH1BpmJIjzRD0r;
         Max-Age=31536000; Domain=.gasbuddy.com; Path=/; Secure; SameSite=Lax
       Vary:
       - Accept-Encoding
@@ -50,6 +50,6 @@ http_interactions:
       - cloudflare
     body:
       encoding: ASCII-8BIT
-      string: '[{"Id":2501,"Name":"Graham","State":"AZ","Price":3.575,"Distance":22.19}]'
-  recorded_at: Sun, 08 Jan 2023 22:37:26 GMT
+      string: '[{"Id":2501,"Name":"Graham","State":"AZ","Price":3.549,"Distance":22.19}]'
+  recorded_at: Mon, 09 Jan 2023 17:41:43 GMT
 recorded_with: VCR 6.1.0

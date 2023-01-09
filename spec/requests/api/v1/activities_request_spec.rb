@@ -5,7 +5,7 @@ RSpec.describe 'Activities API' do
     it 'sends a list of users activities' do
       VCR.insert_cassette 'strava_facade_athlete_activities'
       StravaFacade.athlete(ENV['strava_token']) 
-      headers = {'STRAVA_UID' => 8040180, 'STRAVA_TOKEN' => "#{ENV['strava_token']}"}
+      headers = {'HTTP_STRAVA_UID' => 8040180, 'HTTP_STRAVA_TOKEN' => "#{ENV['strava_token']}"}
       get '/api/v1/activities', headers: headers
       
       activities = JSON.parse(response.body, symbolize_names: true)
@@ -40,7 +40,7 @@ RSpec.describe 'Activities API' do
     it 'updates the db users activities if there are new Strava activities' do
       VCR.insert_cassette 'strava_facade_athlete_activities'
       StravaFacade.athlete(ENV['strava_token'])
-      headers = {'STRAVA_UID' => 8040180, 'STRAVA_TOKEN' => "#{ENV['strava_token']}"}
+      headers = {'HTTP_STRAVA_UID' => 8040180, 'HTTP_STRAVA_TOKEN' => "#{ENV['strava_token']}"}
       get '/api/v1/activities', headers: headers
       VCR.eject_cassette
 
