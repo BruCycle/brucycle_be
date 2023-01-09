@@ -22,10 +22,10 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def verify_params
-    if request.headers[:HTTP_STRAVA_UID].nil?
-      render json: ErrorSerializer.missing_headers, status: 400
-    elsif params[:drank].nil?
+    if params[:drank].nil?
       render json: ErrorSerializer.missing_params, status: 400
+    elsif request.headers[:HTTP_STRAVA_UID].nil?
+      render json: ErrorSerializer.missing_headers, status: 400
     end
   end
 
