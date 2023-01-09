@@ -6,8 +6,8 @@
 * [Technologies](#technologies)
 * [Usage](#usage)
 * [API Endpoints](#api-endpoints)
-  * [User Endpoints](#user-endpoints)
-  * [Activity Endpoints](#activity-endpoints)
+  * [Strava User Endpoints](#strava-user-endpoints)
+  * [Strava Activity Endpoint](#strava-activity-endpoint)
 
 ## General Info
 Rails Engine is a basic RESTful API that provides information about users ([endpoints](#api-endpoints)). We were to work in a service-oriented architecture by first exposing the data through this API.
@@ -89,6 +89,7 @@ Lastly, head to your web browser or Postman. The base URL is `localhost:3000` an
   ```
   <br>
 
+### Strava Activity Endpoint
 - ### PATCH /api/v1/activity
   > fetch a user's activity
   
@@ -121,28 +122,3 @@ Lastly, head to your web browser or Postman. The base URL is `localhost:3000` an
         "miles"=>5.03925}}]
         }
     ```
-
-
-
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
