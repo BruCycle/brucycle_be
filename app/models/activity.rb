@@ -11,7 +11,7 @@ class Activity < ApplicationRecord
 	end
 
 	def self.miles_biked
-		sum(:distance) / 1600
+		(sum(:distance) / 1600).round(3)
 	end
 
 	def gas_price
