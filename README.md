@@ -90,8 +90,8 @@ Lastly, head to your web browser or Postman. The base URL is `localhost:3000` an
   <br>
 
 ### Strava Activity Endpoint
-- ### PATCH /api/v1/activity
-  > fetch a user's activity
+- ### GET /api/v1/activity
+  > fetch a user's activities
   
   | Path Parameter        | Type          |  |
   | ------------- |:-------------:| -----:|
