@@ -59,18 +59,18 @@ RSpec.describe Activity do
       end
 
       it 'updates the attribute for the calories burned' do 
-        expect(@activity.calc_calories_burned).to eq(true)
-        expect(@activity2.calc_calories_burned).to eq(true)
+        expect(@activity.update_calories_burned).to eq(true)
+        expect(@activity2.update_calories_burned).to eq(true)
       end
 
       it 'updates the attribute for the gas money saved' do 
-        expect(@activity.calc_gas_money_saved).to eq(true)
-        expect(@activity2.calc_gas_money_saved).to eq(true)
+        expect(@activity.update_gas_money_saved).to eq(true)
+        expect(@activity2.update_gas_money_saved).to eq(true)
       end
 
       it 'updates the attribute for beers banked' do 
-        expect(@activity.beers_banked).to eq(0.0014)
-        expect(@activity2.beers_banked).to eq(0.0025)
+        expect(@activity.beers_banked).to eq(0.0128)
+        expect(@activity2.beers_banked).to eq(0.0234)
       end
     end
   end
