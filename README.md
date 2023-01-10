@@ -10,6 +10,7 @@
   * [Strava Activity Endpoint](#strava-activity-endpoint)
 
 ## General Info
+ReadMe for Both FE and BE (https://github.com/BruCycle/readme)<br>
 Rails Engine is a basic RESTful API that provides information about users ([endpoints](#api-endpoints)). We were to work in a service-oriented architecture by first exposing the data through this API.
 
 ## Learning Goals
