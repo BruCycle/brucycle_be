@@ -10,7 +10,10 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def update
-    @user.drank_beer
+    return render json: ErrorSerializer.not_enough_beers, status: 400 if @user.brubank < 1
+
+    @user.drank_beer if params[:drank]
+    @user.gift_beer(User.find_by(strava_uid: request.headers[:HTTP_RECIPIENT_UID])) if params[:gift]
     render json: UserSerializer.new(@user)
   end
 
@@ -22,9 +25,11 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def verify_params
-    if params[:drank].nil?
+    if params[:drank].nil? && params[:gift].nil?
       render json: ErrorSerializer.missing_params, status: 400
     elsif request.headers[:HTTP_STRAVA_UID].nil?
+      render json: ErrorSerializer.missing_headers, status: 400
+    elsif request.headers[:HTTP_RECIPIENT_UID].nil? && params[:gift] == 'beer'
       render json: ErrorSerializer.missing_headers, status: 400
     end
   end

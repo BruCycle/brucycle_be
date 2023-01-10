@@ -1,3 +1,5 @@
+require 'rails_helper'
+
 RSpec.describe 'Users API' do
   before(:each) do 
     @json = File.read('spec/fixtures/gas_price.json')
@@ -78,6 +80,41 @@ RSpec.describe 'Users API' do
 
       expect(response.status).to eq(400)
       expect(response.body.include?('MISSING HEADERS')).to eq true
+    end
+
+    context 'gifting beers' do 
+      it 'can gift a beer from one user to another' do 
+        user = create(:user, brubank: 10, beers_drunk: 2)
+        user2 = create(:user, brubank: 10, beers_drunk: 2)
+        beer_params = {gift: 'beer'}
+        headers = {'HTTP_STRAVA_UID' => "#{user.strava_uid}", 'HTTP_RECIPIENT_UID' => "#{user2.strava_uid}"}
+        patch "/api/v1/user", headers: headers, params: beer_params
+
+        expect(response).to be_successful
+        expect(response.status).to eq(200)
+
+        user = JSON.parse(response.body, symbolize_names: true)
+        expect(user[:data][:attributes][:brubank]).to eq(9)
+        expect(User.find(user2.id).brubank).to eq(11)
+      end
+
+      it 'returns a 400 status if gifting a bru and recipient headers are missing' do 
+        user = create(:user, brubank: 0)
+        beer_params = {drank: 'beer'}
+        headers = {'HTTP_STRAVA_UID' => user.strava_uid}
+        patch '/api/v1/user', params: beer_params, headers: headers
+
+        expect(response.status).to eq(400)
+        expect(response.body.include?('NOT ENOUGH BEERS')).to eq true
+      end
+
+      it 'returns a 400 status if headers are missing when deleting a brü' do
+        beer_params = {gift: 'beer'}
+        patch '/api/v1/user', params: beer_params
+  
+        expect(response.status).to eq(400)
+        expect(response.body.include?('MISSING HEADERS')).to eq true
+      end
     end
   end 
 end

@@ -22,4 +22,16 @@ class ErrorSerializer
         ]
       }
   end
+
+  def self.not_enough_beers
+    {
+      'errors': [
+        {
+          "status": 'NOT ENOUGH BEERS',
+          "message": "User needs to more beers in the brubank before gifting or drinking a beer",
+          "code": 400
+        }
+      ]
+    }
+  end
 end 
