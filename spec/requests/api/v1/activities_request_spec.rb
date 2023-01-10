@@ -1,6 +1,14 @@
 require 'rails_helper'
 
 RSpec.describe 'Activities API' do
+  before(:each) do 
+    @json = File.read('spec/fixtures/gas_price.json')
+        
+    stub_request(:post, "https://www.gasbuddy.com/gaspricemap/county")
+      .with(query: hash_including({}))
+      .to_return(status: 200, body: @json)
+  end
+  
   describe '/api/v1/activities' do 
     it 'sends a list of users activities' do
       VCR.insert_cassette 'strava_facade_athlete_activities'

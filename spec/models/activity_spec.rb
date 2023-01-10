@@ -1,6 +1,14 @@
 require 'rails_helper'
 
 RSpec.describe Activity do
+  before(:each) do 
+    @json = File.read('spec/fixtures/gas_price.json')
+        
+    stub_request(:post, "https://www.gasbuddy.com/gaspricemap/county")
+      .with(query: hash_including({}))
+      .to_return(status: 200, body: @json)
+  end
+
   describe 'relationships' do
     it { should belong_to :user }
   end
@@ -13,7 +21,7 @@ RSpec.describe Activity do
     end
     describe '.gas_money_saved' do
       it 'totals all activities gas money saved' do
-        expect(Activity.gas_money_saved).to eq(0.0015)
+        expect(Activity.gas_money_saved).to eq(0.0018)
       end
     end
 
@@ -61,8 +69,8 @@ RSpec.describe Activity do
       end
 
       it 'updates the attribute for beers banked' do 
-        expect(@activity.beers_banked).to eq(0.001)
-        expect(@activity2.beers_banked).to eq(0.0019)
+        expect(@activity.beers_banked).to eq(0.0014)
+        expect(@activity2.beers_banked).to eq(0.0025)
       end
     end
   end
