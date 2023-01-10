@@ -32,10 +32,10 @@ class Activity < ApplicationRecord
 	end
 
 	def calc_gas_money_saved
-		update_attribute(:gas_money_saved, ((distance/1600) / 25 * 3.228).round(4))
+		update_attribute(:gas_money_saved, ((distance/1600) / 25 * gas_price).round(4))
 	end
 
 	def calc_beers_banked 
-		update_attribute(:beers_banked, ((distance/1600) / 25 * 3.228 / 4.25).round(4))
+		update_attribute(:beers_banked, ((distance/1600) / 25 * gas_price / 4.25).round(4))
 	end
 end

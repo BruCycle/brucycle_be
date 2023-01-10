@@ -11,7 +11,12 @@ RSpec.describe 'GasBuddyService' do
     end
     describe '.get_gas_price' do
       it 'returns gas price' do
-        VCR.insert_cassette 'gas_buddy_service'
+        json = File.read('spec/fixtures/gas_price.json')
+        
+        stub_request(:post, "https://www.gasbuddy.com/gaspricemap/county")
+          .with(query: hash_including({}))
+          .to_return(status: 200, body: json)
+
         results = GasBuddyService.get_gas_price(35.100, -105.86)
         expect(results).to be_an Array
         expect(results[0]).to be_a Hash
@@ -20,7 +25,6 @@ RSpec.describe 'GasBuddyService' do
         expect(results[0]).to have_key(:State)
         expect(results[0]).to have_key(:Distance)  
         expect(results[0]).to have_key(:Price)
-        VCR.eject_cassette
       end
     end
   end
