@@ -21,13 +21,13 @@ RSpec.describe Activity do
     end
     describe '.gas_money_saved' do
       it 'totals all activities gas money saved' do
-        expect(Activity.gas_money_saved).to eq(0.0018)
+        expect(Activity.gas_money_saved).to eq(0.0021)
       end
     end
 
     describe '.calories_burned' do
       it 'totals all activities gas money saved' do
-        expect(Activity.calories_burned).to eq(0.564)
+        expect(Activity.calories_burned).to eq(0.6)
       end
     end
 
@@ -69,8 +69,14 @@ RSpec.describe Activity do
       end
 
       it 'updates the attribute for beers banked' do 
-        expect(@activity.beers_banked).to eq(0.0128)
-        expect(@activity2.beers_banked).to eq(0.0234)
+        expect(@activity.beers_banked).to eq(0.0127)
+        expect(@activity2.beers_banked).to eq(0.0235)
+      end
+    end
+
+    describe '#to_miles' do
+      it 'converts meters to miles' do
+        expect(@activity.to_miles).to eq(0.034)
       end
     end
   end

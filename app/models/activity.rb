@@ -22,6 +22,10 @@ class Activity < ApplicationRecord
 		end
 	end
 
+	def to_miles
+		(distance/1600).round(3)
+	end
+
 	def add_to_my_brubank
 		new_amount = beers_banked + user.brubank
 		user.update_attribute(:brubank, new_amount)
@@ -40,10 +44,10 @@ class Activity < ApplicationRecord
 	end
 
 	def calc_calories_burned
-		((distance/1600) * 50)
+		(to_miles * 50)
 	end
 
 	def calc_gas_money_saved
-		((distance/1600) / 25 * gas_price)
+		(to_miles / 25 * gas_price)
 	end
 end
