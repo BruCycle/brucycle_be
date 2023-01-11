@@ -3,6 +3,6 @@ class ActivitySerializer
   attributes :date, :title, :calories_burned, :gas_money_saved, :beers_banked
 
   attribute :miles do |obj|
-     obj.distance/1600
+     obj.to_miles
   end
 end
