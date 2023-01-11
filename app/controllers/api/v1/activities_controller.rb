@@ -14,7 +14,7 @@ class Api::V1::ActivitiesController < ApplicationController
      
   def find_activities
     check_for_activities
-    @activities = Activity.where(strava_uid: request.headers[:HTTP_STRAVA_UID]).order(:date)
+    @activities = Activity.find_my_activities(request.headers[:HTTP_STRAVA_UID])
   end
 
   def check_for_activities

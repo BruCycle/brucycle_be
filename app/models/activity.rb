@@ -2,6 +2,10 @@ class Activity < ApplicationRecord
 	belongs_to :user
 	after_create :update_calories_burned, :update_gas_money_saved, :update_beers_banked, :add_to_my_brubank
 
+	def self.find_my_activities(strava_uid)
+		where(strava_uid: strava_uid).order(date: :desc)
+	end
+
 	def self.gas_money_saved
 		sum(:gas_money_saved).round(4)
 	end
