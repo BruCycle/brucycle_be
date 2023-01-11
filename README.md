@@ -3,6 +3,7 @@
 ## Table of Contents
 * [General Info](#general-info)
 * [Learning Goals](#learning-goals)
+* [Database Design](#database-design)
 * [Technologies](#technologies)
 * [Usage](#usage)
 * [API Endpoints](#api-endpoints)
@@ -17,6 +18,12 @@ Rails Engine is a basic RESTful API that provides information about users ([endp
 - Consume two or more external APIs
 - Create a project with a separate frontend and backend
 - Code follows DRY and SRP design
+
+## Database Desing
+Database Design
+<br>
+  ![BruCycle_DB](https://user-images.githubusercontent.com/103780823/211390915-8ba95209-28ba-4c64-8aa6-24038cb32eee.png)
+  <br>
 
 ## Technologies
 - Ruby 2.7.4
