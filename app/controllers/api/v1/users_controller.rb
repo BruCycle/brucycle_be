@@ -27,9 +27,9 @@ class Api::V1::UsersController < ApplicationController
   def verify_params
     if params[:drank].nil? && params[:gift].nil?
       render json: ErrorSerializer.missing_params, status: 400
-    elsif request.headers[:HTTP_STRAVA_UID].nil?
-      render json: ErrorSerializer.missing_headers, status: 400
     elsif request.headers[:HTTP_RECIPIENT_UID].nil? && params[:gift] == 'beer'
+      render json: ErrorSerializer.missing_headers, status: 400
+    elsif request.headers[:HTTP_STRAVA_UID].nil?
       render json: ErrorSerializer.missing_headers, status: 400
     end
   end
