@@ -12,7 +12,6 @@
 
 ## General Info
 ReadMe for Both FE and BE (https://github.com/BruCycle)<br>
-Rails Engine is a basic RESTful API that provides information about users ([endpoints](#api-endpoints)). We were to work in a service-oriented architecture by first exposing the data through this API.
 
 ## Learning Goals
 - Consume two or more external APIs
@@ -35,7 +34,7 @@ Clone the repo by running `git clone` with the copied URL onto your local machin
 
 Then, run the following commands:
 ```
-cd rails-engine
+cd brucycle_be
 bundle install
 rails db:{drop,create,migrate,seed}
 rails s
