@@ -97,6 +97,36 @@ Lastly, head to your web browser or Postman. The base URL is `localhost:3000` an
   }
   ```
   <br>
+  
+  
+- ### PATCH /api/v1/user
+  > gift a beer from user's Brübank
+  
+  | Required Headers        | Type          |  |
+  | ------------- |:-------------:| -----:|
+  | http_strava_uid      | string | Required |
+  | http_recipient_uid      | string | Required |
+
+  Required query params:
+    {gift: 'beer'}  
+
+  Example:
+  
+  ```
+  {"data"=> { 
+    "id"=>"553",
+    "type"=>"user", 
+    "attributes"=> { 
+      "brubank"=>9.0,
+      "beers_drunk"=>2.0, 
+      "tot_gas_money_saved"=>0, 
+      "tot_calories_burned"=>0, 
+      "tot_miles_biked"=>0 
+    } 
+    } 
+  }
+  ```
+  <br>
 
 ### Strava Activity Endpoint
 - ### GET /api/v1/activity
