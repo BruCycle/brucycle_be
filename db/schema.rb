@@ -17,6 +17,7 @@ ActiveRecord::Schema.define(version: 2023_01_05_164321) do
 
   create_table "activities", force: :cascade do |t|
     t.string "strava_uid"
+    t.string "strava_id"
     t.datetime "date"
     t.string "title"
     t.float "distance"
