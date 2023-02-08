@@ -18,7 +18,7 @@ ReadMe for Both FE and BE (https://github.com/BruCycle)<br>
 - Create a project with a separate frontend and backend
 - Code follows DRY and SRP design
 
-## Database Desing
+## Database Design
 Database Design
 <br>
   ![BruCycle_DB](https://user-images.githubusercontent.com/103780823/211390915-8ba95209-28ba-4c64-8aa6-24038cb32eee.png)
